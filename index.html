@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Mock.js/1.0.0/mock-min.js"></script>
+    
+    <title>Document</title>
+    <style>
+        .username-input {
+            width: 100%;
+            color: red
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="list in lists" >{{list.title}}</li>
+        </ul>
+    </div>
+    <script>
+        let data = Mock.mock({
+            'list|1-10': [{
+                // 属性 id 是一个自增数，起始值为 1，每次增 1
+                'id|+1': 1,
+                "title":"@title(20)"
+            }]
+        })
+        console.log(data)
+        new Vue({
+            el: "#app",
+            data: { 
+                lists:data.list
+            },
+        })
+    </script>
+</body>
+
+</html>
